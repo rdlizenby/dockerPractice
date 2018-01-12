@@ -1,0 +1,36 @@
+https://hub.docker.com/explore/  (find images avaliable)
+
+---Bash Commands--
+___________________________________
+sudo docker run -it ubuntu bash  (pull an ubuntu docker image and run some test commands)
+sudo docker run <IMAGE> or <CONTAINER>
+sudo docker run ubuntu:17.04  (specify version, can also do :latest)
+sudo docker ps (lists all running containers with info about them)
+sudo docker -a (all containers, running or not)
+sudo docker ps -a (history of containers ran/commands/created/exited)
+sudo docker stop <NAME> or <CONTAINER_ID>  (stop a container, can take some time)
+sudo docker rm <NAME> or <CONTAINER_ID>  (remove a container, can use first 3 letters of id and provide multiples in one command)
+sudo docker images (show all images)
+sudo docker rmi <REPOSITORY>  (remove image-must insure no containers are running off of it)
+sudo docker pull <REPOSITORY>  (pull an image but not run) 
+sudo docker run -it <NAME> bash  (run the terminal for a container, useful if nothing else is running)
+sudo docker exec <NAME> <COMMAND>  (execute a command on a container)
+sudo docker attach <NAME> (reattach to running container)
+sudo docker inspect <NAME> (Can find container's ip under networks)
+
+-d (detached mode, run in the background)
+-i (map the standard input of your host to the container)
+-it (and connects the terminal)
+-p 80:5000 (traffic on host port 80 is routed to 5000 in the docker container)
+-v /opt/datadir:/var/lib/mysql mysql  (maps a host directory to docker directory, data should persist both directions)
+
+sudo docker run -p 8080:8080 -v /root/my-jenkins-data:/var/jenkins_home -u root jenkins (starts an instance connect to same jenkins automation server (admin admin123)
+
+sudo docker build <DOCKERFILEDirectory> -t <IMAGENAME>
+________________________________
+--DockerFile Commands--
+_________________________________
+FROM <IMAGE>      (first line, every image must be based off of another image, os or other image)
+RUN <ARGUMENT>    (run command on base image)
+COPY <HOST_PATH> <CONTAINER_PATH>	  (copies files from local system onto the docker image)
+ENTRYPOINT <COMMAND>  (specify a command to run when the image is run as a container)
